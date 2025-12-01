@@ -1,18 +1,19 @@
 function removeMentions() {
-  const selectors = [
-    'article',                  // Twitter/X
-    '[data-testid="feedItem"]'  // Bluesky
-  ];
+    const selectors = [
+        'article',
+        '[data-testid="feedItem"]'
+    ];
 
-  const posts = document.querySelectorAll(selectors.join(','));
+    const posts = document.querySelectorAll(selectors.join(','));
 
-  posts.forEach(post => {
-    const text = post.innerText;
+    posts.forEach(post => {
+        const text = post.innerText;
 
-    if (text && text.match(/(Trump|Biden)/i)) {
-      post.style.display = "none";
-    }
-  });
+        // Putting in keyword one by one is not the best approach
+        if (text && text.match(/(Trump)/i)) {
+            post.style.display = "none";
+        }
+    });
 }
 
 removeMentions();

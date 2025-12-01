@@ -1,26 +1,28 @@
 {
-  "manifest_version": 3,
-  "name": "Remove Trump/Biden Mentions",
-  "description": "Removes mentions of Trump or Biden from Twitter feed.",
-  "version": "1.0",
-  "permissions": [
-    "activeTab"
-  ],
-  "content_scripts": [
-  {
-    "matches": [
-      "https://twitter.com/*",
-      "https://x.com/*",
-      "https://bsky.app/*"
+    "manifest_version": 3,
+    "name": "Twitter Depolitifier",
+    "description": "Removes mentions of Donald Trump on the twitter feed.",
+    "version": "0.1.0",
+    "permissions": [
+        "activeTab"
     ],
-    "js": ["content.js"],
-    "run_at": "document_end"
-  }
-],
-  "background": {
-    "service_worker": "background.js"
-  },
-  "action": {
-    "default_popup": "popup.html"
-  }
+    "content_scripts": [
+        {
+            "matches": [
+                "https://twitter.com/*",
+                "https://x.com/*",
+                "https://bsky.app/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_end"
+        }
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html"
+    }
 }

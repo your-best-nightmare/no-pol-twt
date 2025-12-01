@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remove Trump/Biden Mentions</title>
+  <style>
+    body {
+      width: 200px;
+      font-family: Arial, sans-serif;
+      padding: 10px;
+      text-align: center;
+    }
+    button {
+      width: 100%;
+      padding: 8px;
+      background-color: #0078d4;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h3>Remove Mentions</h3>
+  <button id="removeBtn">Remove Mentions</button>
+  <script>
+    document.getElementById('removeBtn').addEventListener('click', () => {
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        chrome.scripting.executeScript({
+          target: { tabId: tabs[0].id },
+          func: removeMentions
+        });
+      });
+    });
+  </script>
+</body>
+</html>

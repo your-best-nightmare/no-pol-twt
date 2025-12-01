@@ -1,38 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Remove Trump/Biden Mentions</title>
-  <style>
-    body {
-      width: 200px;
-      font-family: Arial, sans-serif;
-      padding: 10px;
-      text-align: center;
-    }
-    button {
-      width: 100%;
-      padding: 8px;
-      background-color: #0078d4;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Trump/Biden Mentions</title>
+    <style>
+
+        body {
+            width: 300px;
+            font-family: "RussianGothic", "MS UI Gothic", "NEC_APC3", Tahoma;
+            padding: 10px;
+            text-align: center;
+            background-color: #121212;
+        }
+
+        h3 {
+            text-decoration: underline;
+            color: cornflowerblue;
+            font-family: "RussianGothic", "MS UI Gothic", "NEC_APC3", Tahoma;
+        }
+
+        p {
+            color: azure;
+        }
+
+        button {
+            width: 100%;
+            padding: 8px;
+            background-color: #0078d4;
+            border-radius: 10px;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        footer p{
+            opacity: 0.6;
+            font-size: small;
+        }
+
+        .blue {
+            color: cornflowerblue;
+        }
+
+        .red {
+            color: red;
+        }
+
+    </style>
 </head>
+
 <body>
-  <h3>Remove Mentions</h3>
-  <button id="removeBtn">Remove Mentions</button>
-  <script>
-    document.getElementById('removeBtn').addEventListener('click', () => {
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        chrome.scripting.executeScript({
-          target: { tabId: tabs[0].id },
-          func: removeMentions
+    <h3>Twitter Depolitifier</h3>
+    <p>
+        A chrome extension for removing politics from the X (formerly known as Twitter) front page.
+        The extension isn't finished yet, and this prototype serves only as <span class="blue">proof of concept</span>.
+        Currently only removes the mention of "Trump". <span class="red">If things aren't working, try clicking the
+            button below and refreshing a couple of times.</span>
+    </p>
+    <button id="removeBtn">Remove Mentions</button>
+    <script>
+        document.getElementById('removeBtn').addEventListener('click', () => {
+            chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+                chrome.scripting.executeScript({
+                    target: { tabId: tabs[0].id },
+                    func: removeMentions
+                });
+            });
         });
-      });
-    });
-  </script>
+    </script>
+    <footer>
+        <p>
+            developed and maintained by leaf of leafmustdie.neocities.org
+        </p>
+    </footer>
 </body>
 </html>
